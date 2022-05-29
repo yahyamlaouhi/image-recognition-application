@@ -1,0 +1,232 @@
+{% extends "layouts/base.html" %}
+
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<html>
+    <head>
+        
+        <style>
+  html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	background: linear-gradient(45deg, #49a09d, #5f2c82);
+	font-family: sans-serif;
+	font-weight: 100;
+}
+
+.container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+table {
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+th,
+td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: #fff;
+}
+
+th {
+	text-align: left;
+}
+
+thead {
+	th{
+		background-color: #55608f;
+	}
+}
+
+tbody {
+	tr {
+		&:hover {
+			background-color: rgba(255,255,255,0.3);
+		}
+	}
+	td {
+		position: relative;
+		&:hover {
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: -9999px;
+				bottom: -9999px;
+				background-color: rgba(255,255,255,0.2);
+				z-index: -1;
+			}
+		}
+	}
+}
+
+.center {
+display: flex;
+justify-content: center;
+}
+
+</style>
+
+ <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+
+
+
+
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        
+        var data=google.visualization.arrayToDataTable([
+                     ['Class','number of images']
+                    ,['Tomato__Tomato_YellowLeaf__Curl_Virus',3208]
+                    ,['Tomato_Bacterial_spot',2127]                        
+                    ,['Tomato_Late_blight',1908]                       
+                    ,['Tomato_Septoria_leaf_spot',1771]                
+                    ,['Tomato_Spider_mites_Two_spotted_spider_mite',1676]  
+                    ,['Tomato_healthy ',1591  ]                  
+                    ,['Pepper__bell___healthy ',1477 ]                      
+                    ,['Tomato__Target_Spot',1404]                     
+                    ,['Pepper__bell___Bacterial_spot',1000 ]                  
+                    ,['Potato___Early_blight',1000]                           
+                    ,['Potato___Late_blight',1000]                            
+                    ,['Tomato_Early_blight' ,997]                            
+                    ,['Tomato_Leaf_Mold',952]                               
+                    ,['Tomato__Tomato_mosaic_virus',373]                    
+                    ,['Potato___healthy',152],
+      ]);
+
+        // Set chart options
+         var options = {
+          title: 'My Database'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+      </script>
+
+      <script type="text/javascript">
+
+
+    google.charts.setOnLoadCallback(drawChart1);
+
+    function drawChart1() {
+      var data = google.visualization.arrayToDataTable([
+
+        ['Algorithme', 'Acuracy', { role: "style" }],
+        ["SVM poly",0.7758035858504281, "#b87333"],
+        ["SVM RBF",0.8270069455661444, "#b87333"],
+        ["SGD",0.8270069455661444, "#b87333"],
+        ["Logistic Regression",0.7342917137780649, "#b87333"],
+        ["GNB",0.42303343563236956, "#b87333"],
+        ["Convolutional Neutral Network",0.9275362491607666, "#b87333"],
+        
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+
+        var options = {
+        title: "Accuracy of every algorithme",
+        width: 600,
+        height: 300,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+      chart.draw(view, options);
+        
+      }
+
+
+
+
+      google.charts.setOnLoadCallback(drawChart3);
+
+      function drawChart3() {
+        var data = google.visualization.arrayToDataTable([
+          ['Age', 'Weight'],
+          [ 8,      12],
+          [ 4,      5.5],
+          [ 11,     14],
+          [ 4,      5],
+          [ 3,      3.5],
+          [ 6.5,    7]
+        ]);
+
+        var options = {
+          title: 'Age vs. Weight comparison',
+          hAxis: {title: 'Age', minValue: 0, maxValue: 15},
+          vAxis: {title: 'Weight', minValue: 0, maxValue: 15},
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div1'));
+
+        chart.draw(data, options);
+      }
+
+
+
+    </script>
+
+
+
+
+    </head>
+    <body>  <div class="container">
+        <div class="row">
+            <div class="col-9">
+            <div id="barchart_values" style="width: 600px; height: 300px;"></div>
+            </div>
+            <div class="col-9">
+                   <div id="piechart" style="width: 600px; height: 300px;"></div>              
+                  </div>
+              </div>
+              </div>
+
+
+    </body>
+    
+
+</html>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
