@@ -1,11 +1,9 @@
-# Project Name
-Farkito API - Image Recognition App
+## Project Name
+Image Recognition App
 
 ## Table of Contents
-* [Features](#features)
 * [Setup](#setup)
 * [Usage](#usage)
-* [Acknowledgements](#acknowledgements)
 
 # Features
 ## Image Recognition
