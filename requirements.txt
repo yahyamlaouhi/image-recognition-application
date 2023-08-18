@@ -10,3 +10,8 @@ toml==0.10.2
 Unipath==1.1
 whitenoise==5.3.0
 django-environ==0.8.1
+flake8>=3.9.0,<4.0.1
+black==22.3.0
+tensorflow
+skimage
+
