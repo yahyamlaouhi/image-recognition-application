@@ -14,5 +14,5 @@ Image Recognition App
 To build the application using Docker, run the following commands:
 
 ```bash
-docker-compose build --no-cache
+docker build -t image-recognizer-app .
 docker run -p 8080:80 --name another-recognizer-container image-recognizer-app
